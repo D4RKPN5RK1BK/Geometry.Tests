@@ -25,14 +25,20 @@ namespace Geometry.Tests.GeometryObjects
         [InlineData(1, true)]
         public void CircleExceptionsTheory(double radius, bool result)
         {
-            Assert.Throws<GeometryException>(() =>
+            if (result)
             {
                 Circle circle = new Circle(radius);
-                circle.GetSquare();
-                
-            });
+                Assert.True(circle != null);
+            }
+            else
+            {
+                Assert.Throws<GeometryException>(() =>
+                {
+                    Circle circle = new Circle(radius);
+                    circle.GetSquare();
 
-            Assert.True(result);
+                });
+            }       
         }
 
     }

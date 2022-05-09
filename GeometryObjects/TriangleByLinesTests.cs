@@ -22,16 +22,18 @@ namespace Geometry.Tests.GeometryObjects
         {
             if (result)
             {
+                TriangleByLines triangle = new TriangleByLines(ab, bc, ca);
+                Assert.True(triangle != null);
+            }
+            else
+            {
                 Assert.Throws<GeometryException>(() =>
                 {
                     TriangleByLines triangle = new TriangleByLines(ab, bc, ca);
                 });
             }
-            else
-            {
-                Assert.True(true);
-            }
             
+
         }
 
         [Theory]
