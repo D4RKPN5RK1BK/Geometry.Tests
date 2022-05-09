@@ -27,6 +27,7 @@ namespace Geometry.Tests.GeometryObjects
 
         [Theory]
         [InlineData(3, 4, 5, 6)]
+        [InlineData(0.03, 0.04, 0.05, 0.06)]
         [InlineData(6, 8, 10, 24)]
         [InlineData(9, 12, 15, 54)]
         [InlineData(12, 16, 20, 96)]
