@@ -8,10 +8,9 @@ namespace Geometry.Tests.GeometryObjects
     public class CircleTests
     {
         [Theory]
-        [InlineData(1, Math.PI)] // Проверка единичной окружности
-        [InlineData(2, 4 * Math.PI)] // Обычных чисел
-        [InlineData(0.0001, 0.0001 * 0.0001 * Math.PI)] // Проверка на малые числа
-        [InlineData(1000000, 1000000.0 * 1000000.0 * Math.PI)] // Проверка на большие числа
+        [InlineData(1, Math.PI)]
+        [InlineData(0.0001, 0.0001 * 0.0001 * Math.PI)]
+        [InlineData(1000000, 1000000.0 * 1000000.0 * Math.PI)]
         public void CircleSquareTheory(double radius, double square)
         {
             Circle circle = new Circle(radius);
@@ -19,19 +18,21 @@ namespace Geometry.Tests.GeometryObjects
         }
 
         [Theory]
-        [InlineData(Double.MinValue)]
-        [InlineData(Double.MaxValue)]
-        [InlineData(0)]
-        [InlineData(-1)]
-        [InlineData(-10)]
-        [InlineData(-0.0001)]
-        public void CircleExceptionsTheory(double radius)
+        [InlineData(Double.MinValue, false)]
+        [InlineData(Double.MaxValue, false)]
+        [InlineData(0, false)]
+        [InlineData(-0.0001, false)]
+        [InlineData(1, true)]
+        public void CircleExceptionsTheory(double radius, bool result)
         {
             Assert.Throws<GeometryException>(() =>
             {
                 Circle circle = new Circle(radius);
                 circle.GetSquare();
+                
             });
+
+            Assert.True(result);
         }
 
     }
